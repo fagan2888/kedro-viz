@@ -20,13 +20,14 @@ export const exportGraph = (download, { width, height }) => {
   clone.setAttribute('width', width);
   clone.setAttribute('height', height);
   clone.querySelector('#zoom-wrapper').removeAttribute('transform');
-  // Add webfont
+  // Add webfont and fix styles
+  clone.classList.add('kedro', 'kui-theme--dark');
   const style = document.createElement('style');
   style.innerHTML =
     '@import url(https://fonts.googleapis.com/css?family=Titillium+Web:400);';
   clone.prepend(style);
   // Download SVG/PNG
-  download(clone, 'kedro-pipeline');
+  download(clone, 'kedro-pipeline', 'internal');
   // Delete cloned SVG
   svg.parentNode.removeChild(clone);
 };
