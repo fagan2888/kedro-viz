@@ -10,7 +10,7 @@ import {
   toggleNodeHovered,
   toggleNodeDisabled,
   toggleNodesDisabled
-} from '../../actions';
+} from '../../actions/nodes';
 import './node-list.css';
 
 const { escapeRegExp, getHighlightedText, handleKeyEvent } = utils;
