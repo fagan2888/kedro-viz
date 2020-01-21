@@ -20,8 +20,7 @@ class NodeList extends React.Component {
     super(props);
 
     this.state = {
-      searchValue: '',
-      typeGroupCollapsed: {}
+      searchValue: ''
     };
 
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -104,18 +103,9 @@ class NodeList extends React.Component {
     });
   }
 
-  onToggleTypeGroupCollapsed(typeID) {
-    const { typeGroupCollapsed } = this.state;
-    this.setState({
-      typeGroupCollapsed: Object.assign({}, typeGroupCollapsed, {
-        [typeID]: !typeGroupCollapsed[typeID]
-      })
-    });
-  }
-
   render() {
     const { hasData, nodes, theme, types } = this.props;
-    const { searchValue, typeGroupCollapsed } = this.state;
+    const { searchValue } = this.state;
     if (!hasData) {
       return null;
     }
@@ -144,13 +134,7 @@ class NodeList extends React.Component {
             {types.map(
               type =>
                 formattedNodes[type.id] && (
-                  <NodeListGroup
-                    key={type.id}
-                    onToggleTypeGroupCollapsed={this.onToggleTypeGroupCollapsed.bind(
-                      this
-                    )}
-                    type={type}
-                    typeGroupCollapsed={typeGroupCollapsed}>
+                  <NodeListGroup key={type.id} type={type}>
                     {formattedNodes[type.id].map(node => (
                       <NodeListItem
                         key={node.id}
